@@ -14,8 +14,9 @@ logstash_inputs_config: |
 
 logstash_filters_config: ""
 
-logstash_outputs_config: |
-    elasticsearch {
-        hosts => "{{ logstash_elasticsearch_host }}"
-        index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
-    }
+logstash_outputs_config: ""
+# logstash_outputs_config: |
+#     elasticsearch {
+#         hosts => "{{ logstash_elasticsearch_host }}"
+#         index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
+#     }

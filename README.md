@@ -5,8 +5,7 @@
 
 ## Defaults
 
-The default config will start a logstash accepting input from beats and outputting
-them to a elasticsearch instance.
+The default config will start a logstash accepting input from beats without any filters and outputs.
 ```yaml
 logstash_beats_port: 5044
 logstash_elasticsearch_host: "http://localhost:9200"
@@ -23,11 +22,7 @@ logstash_inputs_config: |
 
 logstash_filters_config: ""
 
-logstash_outputs_config: |
-    elasticsearch {
-        hosts => "{{ logstash_elasticsearch_host }}"
-        index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
-    }
+logstash_outputs_config: ""
 ```
 ## Examples
 
