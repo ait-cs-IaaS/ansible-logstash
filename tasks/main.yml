@@ -27,10 +27,9 @@
 # Configure logstash
 - name: Create logstash configuration file
   template:
-    src: "{{ item }}.j2"
-    dest: "/etc/logstash/conf.d/{{ item }}"
-  with_items:
-    - logstash.conf
+    src: "{{ item }}"
+    dest: "/etc/logstash/conf.d/{{ item | basename | regex_replace('^(.*).j2$', '\\1' ) }}"
+  loop: "{{ logstash_config_files }}"
   notify: restart logstash
   
   
