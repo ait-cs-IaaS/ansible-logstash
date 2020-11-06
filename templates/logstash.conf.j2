@@ -1,11 +1,11 @@
 input {
-  {{ logstash_inputs_config }}
+{{ logstash_inputs_config | indent(4, first=True) }}
 }
 
 filter {
-  {{ logstash_filters_config }}
+{{ logstash_filters_config | indent(4, first=True) }}
 }
 
 output {
-  {{ logstash_outputs_config }}
+{{ logstash_outputs_config | indent(4, first=True) }}
 }
