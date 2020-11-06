@@ -1,0 +1,16 @@
+# Ansible installation
+
+## Requirements
+- ansible
+
+## Defaults
+
+```
+kafka_server_ip: "localhost"
+kafka_server_port: 9092
+kafka_topics: "aminer" 
+input_beats_port: 5044
+elasticsearch_host: "http://localhost:9200"
+```
+
+
