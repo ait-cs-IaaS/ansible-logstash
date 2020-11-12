@@ -7,6 +7,10 @@
 
 The default config will start a logstash accepting input from beats without any filters and outputs.
 ```yaml
+# default version
+elastic_stack_version: 7.9.3
+elastic_stack_version_lock: true
+
 logstash_beats_port: 5044
 logstash_elasticsearch_host: "http://localhost:9200"
 
