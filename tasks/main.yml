@@ -1,44 +1,43 @@
+---
 # Gather rpm package facts
 - name: Gather rpm package facts
-  package_facts:
+  ansible.builtin.package_facts:
     manager: auto
 
 # Install Java
 - name: Install Java
-  apt: 
+  ansible.builtin.apt:
     name: default-jre
-    update_cache: yes
+    update_cache: true
   when: "'default-jre' not in ansible_facts.packages"
 
 - name: Unhold logstash version for install
-  command: apt-mark unhold logstash
+  ansible.builtin.command: apt-mark unhold logstash
   changed_when: false
 
 # Install Logstash
 - name: Install logstash
-  apt:
+  ansible.builtin.apt:
     name: logstash
-    update_cache: yes
+    update_cache: true
   when: "'logstash' not in ansible_facts.packages"
 
 - name: Hold logstash version
-  command: apt-mark hold logstash
+  ansible.builtin.command: apt-mark hold logstash
   when: elastic_stack_version_lock
   changed_when: false
-    
+
 # Configure logstash
 - name: Create logstash configuration file
-  template:
+  ansible.builtin.template:
     src: "{{ item }}"
-    dest: "/etc/logstash/conf.d/{{ item | basename | regex_replace('^(.*).j2$', '\\1' ) }}"
+    dest: /etc/logstash/conf.d/{{ item | basename | regex_replace('^(.*).j2$', '\1') }}
   loop: "{{ logstash_config_files }}"
-  notify: restart logstash
+  notify: Restart logstash
 
 # Ensure logstash is started
 - name: Start logstash
-  service:
+  ansible.builtin.service:
     name: logstash
     state: started
     enabled: true
-  
-  

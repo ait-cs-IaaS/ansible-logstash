@@ -5,16 +5,16 @@ elastic_stack_version: 7.9.3
 elastic_stack_version_lock: true
 
 logstash_beats_port: 5044
-logstash_elasticsearch_host: "http://localhost:9200"
+logstash_elasticsearch_host: http://localhost:9200
 
-logstash_config_files: 
-    - "{{ logstash_config_tmpl }}"
+logstash_config_files:
+  - "{{ logstash_config_tmpl }}"
 logstash_config_tmpl: templates/logstash.conf.j2
 
 logstash_inputs_config: |
-    beats {
-        port => {{ logstash_beats_port }}
-    }
+  beats {
+      port => {{ logstash_beats_port }}
+  }
 
 logstash_filters_config: ""
 
